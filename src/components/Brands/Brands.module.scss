@@ -1,0 +1,26 @@
+.titleWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    padding: 0 60px;
+    display: inline;
+    font-size: 24px;
+    text-transform: uppercase;
+    transform: translateY(50%);
+    background-color: #FFFFFF;
+}
+
+.wrapper {
+    display: flex;
+    padding: 25px;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #C4C4C4;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}

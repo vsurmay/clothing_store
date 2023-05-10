@@ -1,0 +1,129 @@
+.slider__section {
+  background-image: url("../../../assets/img/home_slider/bg-slider.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 800px;
+
+  .carousel {
+    height: 100%;
+
+    .slider {
+      height: 100%;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      padding: 45px 180px;
+
+      // ====================
+      // margin: 100px 0px;
+      // ====================
+
+      &__describtion {
+        max-width: 504px;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: 40px;
+          background-image: url("../../../assets/img/home_slider/decor-slider.svg");
+          background-repeat: no-repeat;
+          width: 520px;
+          height: 120px;
+        }
+      }
+
+      &__describtion-title {
+        margin-bottom: 40px;
+        font-family: "Oswald", sans-serif;
+        font-weight: 600;
+        font-size: 86px;
+        text-transform: uppercase;
+      }
+
+      &__describtion-sale {
+        color: white;
+        text-shadow: 2px 2px 2px #000000, 0 2px 2px #000000, -2px 0 2px #000000,
+          0 -2px 2px #000000;
+      }
+
+      &__images {
+        display: flex;
+        align-items: center;
+
+        .ant-image {
+          &:first-child {
+            transform: translateX(20%);
+          }
+        }
+
+        .ant-image-img {
+          filter: drop-shadow(10px 10px 24px rgba(0, 0, 0, 0.25));
+        }
+      }
+    }
+
+    .slick-dots {
+      inset-inline-end: unset;
+      inset-inline-start: unset;
+      align-items: center;
+
+      li {
+        width: 18px;
+        height: 18px;
+        margin-inline: 2px;
+        border: 3px solid transparent;
+
+        &.slick-active {
+          background-color: #000000;
+          border: 3px solid #000000;
+
+          button {
+            border: 1px solid #000000;
+          }
+        }
+
+        button {
+          border: 1px solid #828282;
+          background-color: rgba(0, 0, 0, 0);
+          height: 18px;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 1);
+          }
+        }
+      }
+    }
+
+    // .slick-arrow {
+    //     width: 30px;
+    //     height: 30px;
+    //     top: unset;
+    //     bottom: 0;
+    //     z-index: 2;
+
+    //     &.slick-prev {
+    //         inset-inline-start: unset;
+    //         inset-inline-end: 40px;
+    //     }
+
+    //     &.slick-next {
+    //         inset-inline-end: 2px;
+    //     }
+    // }
+  }
+
+  .slider__wrapper {
+    position: relative;
+
+    .slider__arrows {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      gap: 5px;
+    }
+  }
+}

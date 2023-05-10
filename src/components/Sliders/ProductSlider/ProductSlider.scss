@@ -1,0 +1,42 @@
+.sliderProduct__section {
+    margin: 75px 0;
+
+    .swiper {
+        padding-top: 50px;
+
+        .swiper-button-prev {
+            cursor: pointer;
+            top: 25px;
+            background-image: url(../../../img/arrow-productSlider.svg);
+            width: 40px;
+            height: 40px;
+            transform: rotate(180deg);
+            left: unset;
+            right: 50px;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        .swiper-button-next {
+            cursor: pointer;
+            top: 25px;
+            background-image: url(../../../img/arrow-productSlider.svg);
+            width: 40px;
+            height: 40px;
+            left: unset;
+            right: 7px;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+.sliderProduct__title {
+    transform: translateY(30px);
+    font-weight: 600;
+    font-size: 24px;
+}

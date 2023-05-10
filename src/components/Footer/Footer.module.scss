@@ -1,0 +1,27 @@
+.footerTop {
+  background: #e6f1fa;
+  padding: 35px 0;
+}
+
+.footerTopList {
+  display: flex;
+  justify-content: center;
+  gap: 200px;
+  align-items: center;
+}
+
+.footerTopItem {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -25px;
+    background-image: url(../../assets/img/check-mark.svg);
+    background-position: center;
+    width: 15px;
+    height: 12px;
+  }
+}

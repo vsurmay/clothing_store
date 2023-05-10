@@ -1,0 +1,32 @@
+.banner {
+    max-width: 1010px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.bannerReverse {
+    flex-direction: row-reverse;
+}
+
+.describtion {
+    padding: 0 65px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 48px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    margin-top: 7px;
+    margin-bottom: 50px;
+    font-size: 22px;
+    font-size: 22px;
+}

@@ -1,0 +1,48 @@
+.bannerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &.bannerWrapperReverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.bannerDescribtion {
+  position: relative;
+  margin: 0 50px;
+  max-width: 640px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 25px;
+    background-image: url(../../../assets/img/decor-banner.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 96%;
+    height: 90px;
+  }
+}
+
+.title {
+  margin-bottom: 27px;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 56px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 148%;
+}
