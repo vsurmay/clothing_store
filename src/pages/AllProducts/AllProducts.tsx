@@ -7,13 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import OutLineButton from "../../components/UI/Buttons/OutLineButton";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
+import { ClothesProduct } from "../../redux/type";
+import { ColumnsType } from "antd/es/table";
 
 const AllProducts = () => {
   const data = useAppSelector((state) => state.clothes.data);
 
   // const dispatch = useDispatch();
 
-  const columns = [
+  const columns: any = [
     {
       title: "Name",
       dataIndex: "name",
@@ -23,9 +25,7 @@ const AllProducts = () => {
       title: "Image",
       dataIndex: "images",
       key: "image",
-      render: (url, product) => {
-        console.log(url, "url");
-        console.log(product);
+      render: (url: Record<string, string>, product: ClothesProduct) => {
         const firstColor = product.color[0];
         return <Image src={url[firstColor]} width={50} />;
       },
@@ -39,7 +39,7 @@ const AllProducts = () => {
       title: "Colors",
       dataIndex: "color",
       key: "color",
-      render: (colors) => (
+      render: (colors: string[]) => (
         <div className={classes.wrapper}>
           {colors.map((el) => (
             <span
@@ -51,11 +51,12 @@ const AllProducts = () => {
         </div>
       ),
     },
+    ,
     {
       title: "Sizes",
       dataIndex: "size",
       key: "size",
-      render: (sizes) => (
+      render: (sizes: string[]) => (
         <div className={classes.wrapper}>
           {sizes.map((el) => (
             <span key={el} className={classes.size}>
@@ -94,7 +95,11 @@ const AllProducts = () => {
 
   return (
     <>
-      <Table rowKey={(value) => value.id} columns={columns} dataSource={data} />
+      <Table
+        rowKey={(value: ClothesProduct) => value.id}
+        columns={columns}
+        dataSource={data}
+      />
     </>
   );
 };

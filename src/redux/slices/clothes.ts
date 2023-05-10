@@ -1,5 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import { ClothesProduct } from "../type";
 
 interface InitialState {
@@ -31,15 +38,25 @@ export const getClothes = createAsyncThunk(
 
 export const adedClother = createAsyncThunk(
   "clothesSlice/adedClother",
-  async (params: any) => {
-    console.log(params);
-
+  async (params: ClothesProduct) => {
     const db = getFirestore();
     const clotRef = collection(db, "products");
 
     const snapshot = await addDoc(clotRef, params);
 
-    return { id: snapshot.id, ...params };
+    return { ...params, id: snapshot.id };
+  }
+);
+
+export const updateClother = createAsyncThunk(
+  "clothesSlice/updateClother",
+  async (params: ClothesProduct) => {
+    const db = getFirestore();
+    const clotRef = doc(db, "products", params.id);
+
+    await updateDoc(clotRef, params);
+
+    return params;
   }
 );
 
@@ -64,6 +81,16 @@ const clothesSlice = createSlice({
           ...state.productCodes,
           action.payload.productCode,
         ];
+      })
+      .addCase(updateClother.fulfilled, (state, action) => {
+        state.data = state.data.map((el) => {
+          if (el.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return el;
+          }
+        });
+        state.productCodes = state.data.map((el) => el.productCode);
       });
   },
 });
