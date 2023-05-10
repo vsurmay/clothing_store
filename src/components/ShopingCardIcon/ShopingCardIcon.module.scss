@@ -1,0 +1,23 @@
+.card {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.describtion {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.text {
+    font-size: 12px;
+    letter-spacing: 0.01em;
+    text-transform: none;
+}
+
+.price {
+    font-weight: 700;
+}
