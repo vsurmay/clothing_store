@@ -26,9 +26,9 @@ const Home: React.FC = () => {
     dispatch(getClothes());
   }, []);
 
-  const data = useAppSelector((state) => state.clothes);
+  const { data: allClothes, status } = useAppSelector((state) => state.clothes);
 
-  console.log(data);
+  console.log(allClothes);
 
   // const products = useSelector((state) => state.products.data);
   // const articles = useSelector((state) => state.articles.data);

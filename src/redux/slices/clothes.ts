@@ -1,7 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { ClothesProduct } from "../type";
 
-const initialState: any = {
+interface InitialState {
+  data: ClothesProduct[];
+  status: "pending" | "fulfilled" | "rejected";
+}
+
+const initialState: InitialState = {
   data: [],
   status: "pending",
 };
@@ -11,11 +17,12 @@ export const getClothes = createAsyncThunk(
   async (params) => {
     const db = getFirestore();
     const clotRef = collection(db, "products");
-    let clothes: any = [];
+
     const snapshot = await getDocs(clotRef);
-
-    snapshot.forEach((doc) => clothes.push({ ...doc.data, id: doc.id }));
-
+    let clothes: any = [];
+    snapshot.forEach((doc) => {
+      clothes.push({ ...doc.data(), id: doc.id });
+    });
     return clothes;
   }
 );

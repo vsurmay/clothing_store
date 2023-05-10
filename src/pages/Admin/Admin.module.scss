@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    gap: 50px;
+}
+
+.menu {
+    min-width: 180px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.link {
+    padding: 5px 25px;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: rgb(45, 45, 45);
+        color: #fff;
+    }
+}
+
+.active {
+    background-color: rgb(45, 45, 45);
+    color: #fff;
+}

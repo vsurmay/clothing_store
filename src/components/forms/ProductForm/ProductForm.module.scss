@@ -1,0 +1,36 @@
+.group {
+    max-width: 100px;
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+}
+
+
+.formAdd {
+    width: 500px;
+    margin-top: 50px;
+}
+
+.test {
+    div {
+        flex-direction: row !important;
+        flex: unset !important;
+        gap: 30px;
+
+        label {
+            margin-top: 10px !important;
+        }
+
+        input {
+            width: 250px !important;
+        }
+    }
+}

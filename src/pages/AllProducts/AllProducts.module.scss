@@ -1,0 +1,30 @@
+.color {
+    // padding: 2px 10px;
+    border-radius: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    row-gap: 5px;
+    column-gap: 10px;
+    flex-wrap: wrap;
+    // flex: 0 1 300px;
+}
+
+.size {
+    padding: 0 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    &:not(:last-child) {
+        margin-right: 5px;
+    }
+}
+
+.active {
+    display: flex;
+    gap: 20px;
+}
