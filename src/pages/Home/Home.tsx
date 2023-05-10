@@ -15,10 +15,21 @@ import OutLineButton from "../../components/UI/Buttons/OutLineButton";
 import LargeBaner from "../../components/Baners/LargeBaner/LargeBaner";
 import bannerImg04 from "../../assets/img/banners/image04.png";
 import bannerImg05 from "../../assets/img/banners/image05.png";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { getClothes } from "../../redux/slices/clothes";
 // import BlogCard from "../../components/BlogCard/BlogCard";
 // import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
 
 const Home: React.FC = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getClothes());
+  }, []);
+
+  const data = useAppSelector((state) => state.clothes);
+
+  console.log(data);
+
   // const products = useSelector((state) => state.products.data);
   // const articles = useSelector((state) => state.articles.data);
 
