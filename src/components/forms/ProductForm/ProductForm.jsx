@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProductForm.module.scss";
 import { Checkbox, Form, Input, InputNumber, message, Select } from "antd";
-import { useDispatch, useSelector } from "react-redux";
 // import {
 //   adedProducts,
 //   editProducts,
@@ -10,9 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { sizeOptions, colorOptions } from "./productFormData";
 import { useNavigate } from "react-router-dom";
 import FillButton from "../../UI/Buttons/FillButton";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { adedClother } from "../../../redux/slices/clothes";
 
 const ProductForm = ({ add, editProduct }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [selectColors, setSelectColors] = useState([]);
@@ -20,6 +21,8 @@ const ProductForm = ({ add, editProduct }) => {
   // const allProductCodes = useSelector((state) =>
   //   state.products.data.map((product) => product.productCode)
   // );
+
+  const allProductCodes = useAppSelector((state) => state.clothes.productCodes);
 
   // useEffect(() => {
   //   dispatch(getProducts());
@@ -46,37 +49,38 @@ const ProductForm = ({ add, editProduct }) => {
     });
   };
 
-  // const validateUniqueCode = (rules, value, callback) => {
-  //   if (add) {
-  //     if (allProductCodes.includes(value)) {
-  //       callback("Plese enter other value");
-  //     } else {
-  //       callback();
-  //     }
-  //   } else {
-  //     if (
-  //       allProductCodes.includes(value) &&
-  //       editProduct.productCode !== value
-  //     ) {
-  //       callback("Plese enter other value");
-  //     } else {
-  //       callback();
-  //     }
-  //   }
-  // };
+  const validateUniqueCode = (rules, value, callback) => {
+    if (add) {
+      if (allProductCodes.includes(value)) {
+        callback("Plese enter other value");
+      } else {
+        callback();
+      }
+    } else {
+      if (
+        allProductCodes.includes(value) &&
+        editProduct.productCode !== value
+      ) {
+        callback("Plese enter other value");
+      } else {
+        callback();
+      }
+    }
+  };
 
-  // const onFinish = (values) => {
-  //   console.log(values);
-  //   if (add) {
-  //     success("The product was added successfully");
-  //     dispatch(adedProducts(values));
-  //     navigate("/admin/all_products");
-  //   } else {
-  //     success("The product has been changed successfully");
-  //     dispatch(editProducts(values, editProduct.id));
-  //     navigate("/admin/all_products");
-  //   }
-  // };
+  const onFinish = (values) => {
+    console.log(values);
+    if (add) {
+      // success("The product was added successfully");
+      dispatch(adedClother(values));
+      // navigate("/admin/all_products");
+    }
+    // else {
+    //   success("The product has been changed successfully");
+    //   dispatch(editProducts(values, editProduct.id));
+    //   navigate("/admin/all_products");
+    // }
+  };
   // const onFinishFailed = (errorInfo) => {
   //   error(errorInfo);
   // };
@@ -95,7 +99,7 @@ const ProductForm = ({ add, editProduct }) => {
           span: 16,
         }}
         initialValues={!add ? editProduct : null}
-        // onFinish={onFinish}
+        onFinish={onFinish}
         // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
@@ -120,9 +124,9 @@ const ProductForm = ({ add, editProduct }) => {
               required: true,
               message: "Please input unique product code!",
             },
-            // {
-            //   validator: validateUniqueCode,
-            // },
+            {
+              validator: validateUniqueCode,
+            },
           ]}
         >
           <Input />
@@ -246,6 +250,19 @@ const ProductForm = ({ add, editProduct }) => {
           ]}
         >
           <InputNumber addonBefore={"%"} min={0} max={100} />
+        </Form.Item>
+
+        <Form.Item
+          label="Rating"
+          name="rating"
+          rules={[
+            {
+              required: true,
+              message: "Please input discount!",
+            },
+          ]}
+        >
+          <InputNumber min={1} max={10} />
         </Form.Item>
 
         <Form.Item

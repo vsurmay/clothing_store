@@ -4,11 +4,19 @@ import Container from "../../components/Container/Container";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../redux/hooks";
+import { getClothes } from "../../redux/slices/clothes";
 // import { getProducts } from "../../redux/actions/productsAction";
 // import { getArcticles } from "../../redux/actions/articlesAction";
 
 const Admin = () => {
   // const dispatch = useDispatch();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getClothes());
+  }, []);
 
   // useEffect(() => {
   //   dispatch(getProducts());
