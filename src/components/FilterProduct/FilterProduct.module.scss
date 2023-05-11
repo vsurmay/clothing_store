@@ -1,0 +1,29 @@
+.filterSection {
+  margin-bottom: 60px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filtersProducts {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid #c4c4c4;
+}
+
+.loadMore {
+  margin-top: 60px;
+}
+
+.filterTitle {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.filterList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

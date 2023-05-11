@@ -1,8 +1,7 @@
 .wrapper {
-  max-width: 1485px;
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  flex-wrap: wrap;
-  // justify-content: uns;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }

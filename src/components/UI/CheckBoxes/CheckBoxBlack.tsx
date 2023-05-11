@@ -1,7 +1,17 @@
 import React from "react";
 import classes from "./CheckBoxBlack.module.scss";
 
-const CheckBoxBlack = ({ labeltext, setActiveCheckBox, activeCheckBox }) => {
+type CheckBoxBlackProps = {
+  labeltext: string;
+  setActiveCheckBox: (params: string[]) => void;
+  activeCheckBox: string[];
+};
+
+const CheckBoxBlack: React.FC<CheckBoxBlackProps> = ({
+  labeltext,
+  setActiveCheckBox,
+  activeCheckBox,
+}) => {
   return (
     <label className={classes.label}>
       <input
