@@ -5,12 +5,26 @@ import CheckBoxBlack from "../UI/CheckBoxes/CheckBoxBlack";
 import ProductsWrapper from "../ProductsWrapper/ProductsWrapper";
 import { useAppSelector } from "../../redux/hooks";
 import GrayButton from "../UI/Buttons/GrayButton";
+import { BeatLoader } from "react-spinners";
 
 const FilterProducts: React.FC = () => {
   const { data: allClothes, status } = useAppSelector((state) => state.clothes);
 
   const [activeCheckBox, setActiveCheckBox] = useState<string[]>([]);
   const [productsCount, setProductsCount] = useState<number>(8);
+  const [loader, setLoader] = useState<boolean>(false);
+
+  console.log(loader);
+
+  const fakeLoader = async () => {
+    await new Promise<void>((resolve) => {
+      return setTimeout(() => {
+        resolve();
+      }, 500);
+    });
+    setLoader(false);
+    setProductsCount(productsCount + 4);
+  };
 
   const allCategory: string[] = [
     "Best sellers",
@@ -23,10 +37,10 @@ const FilterProducts: React.FC = () => {
 
   const filterProducts =
     !activeCheckBox.length && allClothes
-      ? allClothes
-      : allClothes.filter((product) =>
-          activeCheckBox.includes(product.category)
-        );
+      ? allClothes.filter((_, index) => index < productsCount)
+      : allClothes
+          .filter((product) => activeCheckBox.includes(product.category))
+          .filter((_, index) => index < productsCount);
 
   return (
     <Container>
@@ -38,6 +52,7 @@ const FilterProducts: React.FC = () => {
               <li key={el} className={classes.filterItem}>
                 <CheckBoxBlack
                   labeltext={el}
+                  setProductsCount={setProductsCount}
                   setActiveCheckBox={setActiveCheckBox}
                   activeCheckBox={activeCheckBox}
                 />
@@ -49,11 +64,20 @@ const FilterProducts: React.FC = () => {
           {status === "fulfilled" ? (
             <>
               <ProductsWrapper products={filterProducts} skeleton={false} />
-              {filterProducts.length > 8 && (
+              {loader && (
+                <BeatLoader
+                  className={classes.loader}
+                  size={20}
+                  color="#000000"
+                />
+              )}
+
+              {filterProducts.length >= 8 && !loader && (
                 <GrayButton
                   className={classes.loadMore}
                   onClick={() => {
-                    setProductsCount(productsCount + 4);
+                    setLoader(true);
+                    fakeLoader();
                   }}
                 >
                   load more

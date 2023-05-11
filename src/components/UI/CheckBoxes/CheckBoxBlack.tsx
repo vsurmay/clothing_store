@@ -3,14 +3,16 @@ import classes from "./CheckBoxBlack.module.scss";
 
 type CheckBoxBlackProps = {
   labeltext: string;
-  setActiveCheckBox: (params: string[]) => void;
+  setActiveCheckBox: (param: string[]) => void;
   activeCheckBox: string[];
+  setProductsCount: (param: number) => void;
 };
 
 const CheckBoxBlack: React.FC<CheckBoxBlackProps> = ({
   labeltext,
   setActiveCheckBox,
   activeCheckBox,
+  setProductsCount,
 }) => {
   return (
     <label className={classes.label}>
@@ -21,6 +23,7 @@ const CheckBoxBlack: React.FC<CheckBoxBlackProps> = ({
           } else {
             setActiveCheckBox([...activeCheckBox, labeltext]);
           }
+          setProductsCount(8);
         }}
         type={"checkbox"}
         name={labeltext}
