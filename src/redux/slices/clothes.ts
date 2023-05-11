@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -51,10 +52,24 @@ export const adedClother = createAsyncThunk(
 export const updateClother = createAsyncThunk(
   "clothesSlice/updateClother",
   async (params: ClothesProduct) => {
+    console.log(params);
+
     const db = getFirestore();
     const clotRef = doc(db, "products", params.id);
 
     await updateDoc(clotRef, params);
+
+    return params;
+  }
+);
+
+export const deleteClother = createAsyncThunk(
+  "clothesSlice/deleteClother",
+  async (params: string) => {
+    const db = getFirestore();
+    const docRef = doc(db, "products", params);
+
+    await deleteDoc(docRef);
 
     return params;
   }
@@ -83,6 +98,8 @@ const clothesSlice = createSlice({
         ];
       })
       .addCase(updateClother.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.data = state.data.map((el) => {
           if (el.id === action.payload.id) {
             return action.payload;
@@ -90,6 +107,10 @@ const clothesSlice = createSlice({
             return el;
           }
         });
+        state.productCodes = state.data.map((el) => el.productCode);
+      })
+      .addCase(deleteClother.fulfilled, (state, action) => {
+        state.data = state.data.filter((el) => el.id !== action.payload);
         state.productCodes = state.data.map((el) => el.productCode);
       });
   },

@@ -1,89 +1,82 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProductForm.module.scss";
 import { Checkbox, Form, Input, InputNumber, message, Select } from "antd";
-// import {
-//   adedProducts,
-//   editProducts,
-//   getProducts,
-// } from "../../redux/actions/productsAction";
 import { sizeOptions, colorOptions } from "./productFormData";
 import { useNavigate } from "react-router-dom";
 import FillButton from "../../UI/Buttons/FillButton";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { adedClother } from "../../../redux/slices/clothes";
+import { adedClother, updateClother } from "../../../redux/slices/clothes";
+import { ClothesProduct } from "../../../redux/type";
+import { ValidateErrorEntity } from "rc-field-form/lib/interface";
 
-const ProductForm = ({ add, editProduct }) => {
+type ProductFormProps = {
+  add: boolean;
+  editProduct?: ClothesProduct;
+  onClose?: () => void;
+};
+
+
+const ProductForm: React.FC<ProductFormProps> = ({
+  onClose,
+  add,
+  editProduct,
+}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [selectColors, setSelectColors] = useState([]);
-
-  // const allProductCodes = useSelector((state) =>
-  //   state.products.data.map((product) => product.productCode)
-  // );
+  const [selectColors, setSelectColors] = useState<string[]>([]);
 
   const allProductCodes = useAppSelector((state) => state.clothes.productCodes);
 
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (editProduct) {
-  //     setSelectColors(editProduct.color);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (editProduct) {
+      setSelectColors(editProduct.color);
+    }
+  }, []);
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  const success = (message) => {
+  const success = (message: string) => {
     messageApi.open({
       type: "success",
       content: message,
     });
   };
-  const error = (errorInfo) => {
+  const error = (errorInfo: ValidateErrorEntity) => {
     messageApi.open({
       type: "error",
       content: errorInfo.errorFields[0].errors[0],
     });
   };
 
-  const validateUniqueCode = (rules, value, callback) => {
-    if (add) {
-      if (allProductCodes.includes(value)) {
-        callback("Plese enter other value");
-      } else {
-        callback();
-      }
+  const validateUnique = (value: string, data: string[]) => {
+    if (add && !editProduct) {
+      if (data.includes(value))
+        return Promise.reject("You can enter only a unique value");
+      return Promise.resolve();
     } else {
-      if (
-        allProductCodes.includes(value) &&
-        editProduct.productCode !== value
-      ) {
-        callback("Plese enter other value");
-      } else {
-        callback();
-      }
+      if (data.includes(value) && value !== editProduct?.productCode)
+        return Promise.reject("You can enter only a unique value");
+      return Promise.resolve();
     }
   };
 
-  const onFinish = (values) => {
-    console.log(values);
-    if (add) {
-      // success("The product was added successfully");
+  const onFinish = (values: ClothesProduct) => {
+    if (!editProduct && add) {
+      success("The product was added successfully");
       dispatch(adedClother(values));
-      // navigate("/admin/all_products");
+      navigate("/admin/all_products");
+    } else {
+      success("The product has been changed successfully");
+      dispatch(updateClother({ ...editProduct, ...values }));
+      console.log({ ...editProduct, ...values });
+      onClose && onClose();
     }
-    // else {
-    //   success("The product has been changed successfully");
-    //   dispatch(editProducts(values, editProduct.id));
-    //   navigate("/admin/all_products");
-    // }
   };
-  // const onFinishFailed = (errorInfo) => {
-  //   error(errorInfo);
-  // };
+
+  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    error(errorInfo);
+  };
 
   return (
     <>
@@ -98,9 +91,9 @@ const ProductForm = ({ add, editProduct }) => {
         wrapperCol={{
           span: 16,
         }}
-        initialValues={!add ? editProduct : null}
+        initialValues={!add ? editProduct && editProduct : {}}
         onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
+        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -125,11 +118,11 @@ const ProductForm = ({ add, editProduct }) => {
               message: "Please input unique product code!",
             },
             {
-              validator: validateUniqueCode,
+              validator: (_, value) => validateUnique(value, allProductCodes),
             },
           ]}
         >
-          <Input />
+          <Input onChange={(e) => {}} />
         </Form.Item>
 
         <Form.Item
@@ -186,7 +179,7 @@ const ProductForm = ({ add, editProduct }) => {
           ]}
         >
           <Checkbox.Group
-            onChange={(e) => {
+            onChange={(e: any) => {
               setSelectColors(e);
             }}
             className={classes.group}
