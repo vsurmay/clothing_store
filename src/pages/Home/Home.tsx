@@ -17,6 +17,9 @@ import bannerImg04 from "../../assets/img/banners/image04.png";
 import bannerImg05 from "../../assets/img/banners/image05.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getClothes } from "../../redux/slices/clothes";
+import CheckBoxBlack from "../../components/UI/CheckBoxes/CheckBoxBlack";
+import GrayButton from "../../components/UI/Buttons/GrayButton";
+import ProductsWrapper from "../../components/ProductsWrapper/ProductsWrapper";
 // import BlogCard from "../../components/BlogCard/BlogCard";
 // import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
 
@@ -33,28 +36,28 @@ const Home: React.FC = () => {
   // const products = useSelector((state) => state.products.data);
   // const articles = useSelector((state) => state.articles.data);
 
-  // const [productsCount, setProductsCount] = useState(8);
-  // const [activeCheckBox, setActiveCheckBox] = useState([]);
+  const [productsCount, setProductsCount] = useState<number>(8);
+  const [activeCheckBox, setActiveCheckBox] = useState([]);
 
   // useEffect(() => {
   //   setProductsCount(8);
   // }, [activeCheckBox]);
 
   // const filterProducts =
-  //   !activeCheckBox.length && products
-  //     ? products.filter((el, index) => index < productsCount)
-  //     : products
+  //   !activeCheckBox.length && allClothes
+  //     ? allClothes.filter((el, index) => index < productsCount)
+  //     : allClothes
   //         .filter((product) => activeCheckBox.includes(product.category))
   //         .filter((el, index) => index < productsCount);
 
-  // const allCategory = [
-  //   "Best sellers",
-  //   "Top women",
-  //   "New arivals",
-  //   "Collection: summer",
-  //   "Collection: spring",
-  //   "Trending",
-  // ];
+  const allCategory = [
+    "Best sellers",
+    "Top women",
+    "New arivals",
+    "Collection: summer",
+    "Collection: spring",
+    "Trending",
+  ];
 
   const dataBlog = [
     {
@@ -123,47 +126,57 @@ const Home: React.FC = () => {
         </div>
       </Container>
       {
-        /*
-      <Container>
-        <div className={classes.filterSection}>
-          <div className={classes.filter}>
-            <h3 className={classes.filterTitle}>Shop Some Wear:</h3>
-            <ul className={classes.filterList}>
-              {allCategory.map((el) => (
-                <li key={el} className={classes.filterItem}>
-                  <CheckBoxBlack
-                    labeltext={el}
-                    setActiveCheckBox={setActiveCheckBox}
-                    activeCheckBox={activeCheckBox}
+        <>
+          <Container>
+            <div className={classes.filterSection}>
+              <div className={classes.filter}>
+                <h3 className={classes.filterTitle}>Shop Some Wear:</h3>
+                <ul className={classes.filterList}>
+                  {allCategory.map((el) => (
+                    <li key={el} className={classes.filterItem}>
+                      {/* <CheckBoxBlack
+                        labeltext={el}
+                        setActiveCheckBox={setActiveCheckBox}
+                        activeCheckBox={activeCheckBox}
+                      /> */}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={classes.filtersProducts}>
+                {status === "fulfilled" ? (
+                  <>
+                    <ProductsWrapper products={allClothes} skeleton={false} />
+                    <GrayButton
+                      className={classes.loadMore}
+                      onClick={() => {
+                        setProductsCount(productsCount + 4);
+                      }}
+                    >
+                      load more
+                    </GrayButton>
+                  </>
+                ) : (
+                  <ProductsWrapper
+                    skeleton={true}
+                    products={[...new Array(8)]}
                   />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={classes.filtersProducts}>
-            <ProductsWrapper products={filterProducts} />
-            <GrayButton
-              className={classes.loadMore}
-              onClick={() => {
-                setProductsCount(productsCount + 4);
-              }}
-            >
-              load more
-            </GrayButton>
-          </div>
-        </div>
-      </Container>
-*/
-        <LargeBaner
-          background={
-            "linear-gradient(90deg, #DDEBF1 0%, #D3E5EE 42.71%, #C8DEEC 69.27%, rgba(255, 255, 255, 0) 100%)"
-          }
-          title={"shoping without limits."}
-          subtitle={
-            "You can choose the best option for you, and it does not matter whether you are in Prague or San Francisco. We will deliver your purchase anywhere!"
-          }
-          img={bannerImg04}
-        />
+                )}
+              </div>
+            </div>
+          </Container>
+          <LargeBaner
+            background={
+              "linear-gradient(90deg, #DDEBF1 0%, #D3E5EE 42.71%, #C8DEEC 69.27%, rgba(255, 255, 255, 0) 100%)"
+            }
+            title={"shoping without limits."}
+            subtitle={
+              "You can choose the best option for you, and it does not matter whether you are in Prague or San Francisco. We will deliver your purchase anywhere!"
+            }
+            img={bannerImg04}
+          />
+        </>
+
         /*
       <ProductSlider products={products} title={"Featured Items"} />
       <ProductSlider products={products} title={"Most Popular"} />

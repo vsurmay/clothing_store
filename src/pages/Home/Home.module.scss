@@ -1,89 +1,89 @@
 .banners {
-    margin-top: 30px;
-    display: flex;
-    gap: 30px;
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .littleBanners {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .biggerBaner {
-    position: relative;
-    max-width: 840px;
+  position: relative;
+  max-width: 840px;
 
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .biggerBanerDescribtion {
-    position: absolute;
-    top: 430px;
-    left: 60px;
+  position: absolute;
+  top: 430px;
+  left: 60px;
 }
 
 .biggerBanerTitle {
-    max-width: 360px;
-    font-weight: 600;
-    font-size: 96px;
-    text-transform: uppercase;
-    color: #131313;
+  max-width: 360px;
+  font-weight: 600;
+  font-size: 96px;
+  text-transform: uppercase;
+  color: #131313;
 }
 
 .biggerBanerSubtitle {
-    margin-top: 8px;
-    margin-bottom: 50px;
-    font-size: 25px;
-    letter-spacing: 0.01em;
+  margin-top: 8px;
+  margin-bottom: 50px;
+  font-size: 25px;
+  letter-spacing: 0.01em;
 }
 
 .filterSection {
-    margin-bottom: 60px;
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
+  margin-bottom: 60px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .filtersProducts {
-    padding-left: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-left: 1px solid #C4C4C4;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid #c4c4c4;
 }
 
 .loadMore {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 .filterTitle {
-    margin-bottom: 30px;
-    font-size: 24px;
+  margin-bottom: 30px;
+  font-size: 24px;
 }
 
 .filterList {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .blogSection {
-    margin-top: 80px;
-    padding: 45px 0;
-    background: #F8F9FB;
+  margin-top: 80px;
+  padding: 45px 0;
+  background: #f8f9fb;
 }
 
 .blogTitle {
-    margin-bottom: 30px;
-    font-size: 24px;
+  margin-bottom: 30px;
+  font-size: 24px;
 }
 
 .blogWrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }

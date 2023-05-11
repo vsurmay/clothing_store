@@ -1,0 +1,31 @@
+.box {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.wrapperColor {
+    min-width: 26px;
+    height: 26px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+        border: 1px solid #C4C4C4;
+    }
+
+    &.active {
+        transition: none;
+        border: 2px solid #000000;
+    }
+}
+
+.color {
+    width: 17px;
+    height: 17px;
+}

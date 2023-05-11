@@ -15,7 +15,6 @@ type ProductFormProps = {
   onClose?: () => void;
 };
 
-
 const ProductForm: React.FC<ProductFormProps> = ({
   onClose,
   add,
@@ -246,7 +245,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
         </Form.Item>
 
         <Form.Item
-          label="Rating"
+          label="Rating (0-10)"
           name="rating"
           rules={[
             {

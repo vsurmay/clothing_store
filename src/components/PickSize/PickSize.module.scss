@@ -1,0 +1,52 @@
+.sizeBox {
+    max-width: 550px;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+}
+
+.sizeWrapper {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #C4C4C4;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 21px;
+        left: -10px;
+        width: 63px;
+        height: 1px;
+        background-color: #C4C4C4;
+        transform: rotate(45deg);
+    }
+}
+
+.sizeLabel {
+    color: #828282;
+    text-transform: uppercase;
+}
+
+.availableSize {
+    transition: all 0.3s;
+
+    &::after {
+        display: none;
+    }
+
+    &:hover {
+        border: 1px solid #656565;
+    }
+
+    &.active {
+        border: 1px solid #000000;
+
+        .sizeLabel {
+            color: #000000;
+        }
+    }
+}
