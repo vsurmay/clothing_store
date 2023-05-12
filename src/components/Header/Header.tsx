@@ -19,7 +19,6 @@ const Header = () => {
       text: "home",
       key: "/",
     },
-
     {
       text: "shop",
       key: "/shop",

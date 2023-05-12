@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProductPage.module.scss";
-// import PickColor from "../../components/PickColor/PickColor";
-// import PickSize from "../../components/PickSize/PickSize";
-// import FillButton from "../../components/UI/Buttons/FillButton";
-// import OutLineButton from "../../components/UI/Buttons/OutLineButton";
-// import { HeartOutlined } from "@ant-design/icons";
 import { InputNumber, Image, message } from "antd";
-// import { useDispatch, useSelector } from "react-redux";
-// import { adedProductBasket } from "../../redux/actions/basketAction";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getClotherProduct } from "../../redux/slices/clothes";
+import { BasketItem } from "../../redux/type";
+import calculationNewPrice from "../../utils/calculationNewPrice";
+import { adedBasketItem } from "../../redux/slices/basket";
+
 import PickColor from "../../components/PickColor/PickColor";
 import PickSize from "../../components/PickSize/PickSize";
 import FillButton from "../../components/UI/Buttons/FillButton";
 import OutLineButton from "../../components/UI/Buttons/OutLineButton";
 import { HeartOutlined } from "@ant-design/icons";
-import calculationNewPrice from "../../utils/calculationNewPrice";
 
 const ProductPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { productId } = useParams();
   const { clotherProduct: product, statusClotherProduct: status } =
     useAppSelector((state) => state.clothes);
+  const allUniqueCodes = useAppSelector((state) => state.basket.allUniqueCodes);
   const [activeColor, setActiveColor] = useState<string>(product.color[0]);
   const [activeSize, setActiveSize] = useState<string>(product.size[0]);
   const [quantityProduct, setQuantityProduct] = useState<number>(1);
@@ -55,38 +52,33 @@ const ProductPage: React.FC = () => {
     });
   };
 
-  const onSubmit = () => {
+  function onSubmit() {
     const newUniqueCode = product.name + activeColor + activeSize;
-    console.log(newUniqueCode);
-    // if (allProductsBasketUniqueCodes.includes(newUniqueCode)) {
-    //   error();
-    // } else {
-    //   const basketItem = {
-    //     name: product.name,
-    //     price: newPrice(product.price, product.discount),
-    //     color: activeColor,
-    //     size: activeSize,
-    //     quantity: quantityProduct,
-    //     image: product.images[activeColor],
-    //     productCode: product.productCode,
-    //     uniqueCode: newUniqueCode,
-    //   };
-    //   dispatch(adedProductBasket(basketItem));
-    //   success();
-    // }
-  };
+    if (allUniqueCodes.includes(newUniqueCode)) {
+      error();
+    } else {
+      const basketItem: BasketItem = {
+        name: product.name,
+        price: calculationNewPrice(product.price, product.discount),
+        color: activeColor,
+        size: activeSize,
+        quantity: quantityProduct,
+        image: product.images[activeColor],
+        productCode: product.productCode,
+        uniqueCode: newUniqueCode,
+      };
+      dispatch(adedBasketItem(basketItem));
+      success();
+    }
+  }
 
-  // const calculationNewPrice = (price, percent) => {
-  //   const result = percent === 0 ? price : price - (price * percent) / 100;
-  //   return result;
-  // };
   if (status === "pending") {
     return <>Загрузка</>;
   }
 
   return (
     <>
-      {contextHolder}(
+      {contextHolder}
       <div className={classes.productPage}>
         <div className={classes.wrapper}>
           <div className={classes.images}>
