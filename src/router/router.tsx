@@ -6,6 +6,7 @@ import AddProduct from "../pages/AddProduct/AddProduct";
 import AllProducts from "../pages/AllProducts/AllProducts";
 import Shop from "../pages/Shop/Shop";
 import ProductPage from "../pages/ProductPage/ProductPage";
+import Basket from "../pages/Basket/Basket";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/shop/product/:productId",
         element: <ProductPage />,
+      },
+      {
+        path: "/basket",
+        element: <Basket />,
       },
     ],
   },

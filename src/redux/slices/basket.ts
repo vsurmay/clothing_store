@@ -33,9 +33,42 @@ const basketSlice = createSlice({
       ];
       state.sumBasketProducts = getSumBasketProducts(state.products);
     },
+    deleteBasketItem: (state, action: PayloadAction<string>) => {
+      state.products = state.products.filter(
+        (product) => product.uniqueCode !== action.payload
+      );
+      state.allUniqueCodes = state.products.map(
+        (product) => product.uniqueCode
+      );
+      state.sumBasketProducts = getSumBasketProducts(state.products);
+    },
+    updateBasketProducts: (state, action: PayloadAction<BasketItem>) => {
+      state.products = state.products.map((product) => {
+        if (product.uniqueCode === action.payload.uniqueCode) {
+          return action.payload;
+        } else {
+          return product;
+        }
+      });
+      state.allUniqueCodes = state.products.map(
+        (product) => product.uniqueCode
+      );
+      state.sumBasketProducts = getSumBasketProducts(state.products);
+    },
+    deleteAllBasketItems: (state) => {
+      state.products = [];
+      state.allUniqueCodes = [];
+      state.sumBasketProducts = 0;
+    },
   },
 });
 
-export const { adedBasketItem, getBasketItems } = basketSlice.actions;
+export const {
+  adedBasketItem,
+  getBasketItems,
+  deleteBasketItem,
+  updateBasketProducts,
+  deleteAllBasketItems,
+} = basketSlice.actions;
 
 export default basketSlice.reducer;
