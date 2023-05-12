@@ -1,11 +1,6 @@
 import React from "react";
 import { Image, InputNumber } from "antd";
 import classes from "./TableBasket.module.scss";
-// import { useDispatch } from "react-redux/es/exports";
-// import {
-//   deletProductBasket,
-//   editProductBasket,
-// } from "../../redux/actions/basketAction";
 import { Link } from "react-router-dom";
 import GrayButton from "../UI/Buttons/GrayButton";
 import deleteIcon from "../../assets/img/delete-basket.svg";
@@ -23,12 +18,7 @@ type TableBasketProps = {
 };
 
 const TableBasket: React.FC<TableBasketProps> = ({ products }) => {
-  // const dispatch = useDispatch();
   const dispatch = useAppDispatch();
-
-  // const deleteAllProduct = () => {
-  //   products.forEach((product) => dispatch(deletProductBasket(product)));
-  // };
 
   return (
     <div className={classes.tableBasket}>
