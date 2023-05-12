@@ -1,14 +1,26 @@
 import React from "react";
 import classes from "./PickSize.module.scss";
-import { sizeOptions } from "../../forms/ProductForm/productFormData";
+import { sizeOptions } from "../../assets/sizeOptions";
 
-const PickSize = ({ availableSizes, activeSize, setActiveSize }) => {
+type PickSizeProps = {
+  availableSizes: string[];
+  activeSize: string;
+  setActiveSize: (param: string) => void;
+};
+
+const PickSize: React.FC<PickSizeProps> = ({
+  availableSizes,
+  activeSize,
+  setActiveSize,
+}) => {
   return (
     <div className={classes.sizeBox}>
       {sizeOptions.map((size) => (
         <div
           onClick={() => {
-            setActiveSize(size.key);
+            if (availableSizes.includes(size.key)) {
+              setActiveSize(size.key);
+            }
           }}
           className={`${classes.sizeWrapper} ${
             availableSizes.includes(size.key) ? classes.availableSize : ""

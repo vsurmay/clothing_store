@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProductForm.module.scss";
 import { Checkbox, Form, Input, InputNumber, message, Select } from "antd";
-import { sizeOptions, colorOptions } from "./productFormData";
+
 import { useNavigate } from "react-router-dom";
 import FillButton from "../../UI/Buttons/FillButton";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { adedClother, updateClother } from "../../../redux/slices/clothes";
 import { ClothesProduct } from "../../../redux/type";
 import { ValidateErrorEntity } from "rc-field-form/lib/interface";
+import { sizeOptions } from "../../../assets/sizeOptions";
+import { colorOptions } from "../../../assets/colorOptions";
 
 type ProductFormProps = {
   add: boolean;

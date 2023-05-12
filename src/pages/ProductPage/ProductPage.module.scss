@@ -1,0 +1,56 @@
+.wrapper {
+    display: flex;
+    gap: 70px
+}
+
+.title {
+    margin-bottom: 28px;
+    max-width: 500px;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 117%;
+}
+
+.subtitle {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+        color: #0F6DB1;
+        text-decoration-line: underline;
+    }
+}
+
+.priceWrapper {
+    display: flex;
+    gap: 24px;
+}
+
+.priceValue {
+    padding: 2px 0;
+    font-weight: 500;
+    font-size: 26px;
+    text-transform: uppercase;
+}
+
+.newPrice {
+    color: #EB5757;
+}
+
+.oldPrice {
+    color: #828282;
+    font-size: 18px;
+    margin-left: 15px;
+    text-decoration: line-through;
+}
+
+.btns {
+    margin-top: 36px;
+    display: flex;
+    gap: 20px;
+}

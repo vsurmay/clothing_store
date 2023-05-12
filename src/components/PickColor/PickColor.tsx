@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./PickColor.module.scss";
 
 type PickColorProps = {
-  setActiveColor: any;
+  setActiveColor: (param: string) => void;
   activeColor: string;
   colors: string[];
 };

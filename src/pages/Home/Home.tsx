@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
-import Container from "../../components/Container/Container";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { getClothes } from "../../redux/slices/clothes";
+
 import classes from "./Home.module.scss";
-import SliderBanner from "../../components/Sliders/SliderBanner/SliderBanner";
-import Brands from "../../components/Brands/Brands";
-import LittleBanner from "../../components/Baners/LittleBaner/LittleBaner";
+
 import bannerImg01 from "../../assets/img/banners/image01.png";
 import bannerImg02 from "../../assets/img/banners/image02.png";
 import bannerImg03 from "../../assets/img/banners/image03.png";
-import OutLineButton from "../../components/UI/Buttons/OutLineButton";
-// import { useSelector } from "react-redux";
-// import ProductsWrapper from "../../components/ProductsWrapper/ProductsWrapper";
-// import GrayButton from "../../components/UI/Buttons/GrayButton";
-// import CheckBoxBlack from "../../components/UI/CheckBoxes/CheckBoxBlack";
-import LargeBaner from "../../components/Baners/LargeBaner/LargeBaner";
 import bannerImg04 from "../../assets/img/banners/image04.png";
 import bannerImg05 from "../../assets/img/banners/image05.png";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getClothes } from "../../redux/slices/clothes";
-import CheckBoxBlack from "../../components/UI/CheckBoxes/CheckBoxBlack";
-import GrayButton from "../../components/UI/Buttons/GrayButton";
-import ProductsWrapper from "../../components/ProductsWrapper/ProductsWrapper";
+
+import Container from "../../components/Container/Container";
+import SliderBanner from "../../components/Sliders/SliderBanner/SliderBanner";
+import Brands from "../../components/Brands/Brands";
+import LittleBanner from "../../components/Baners/LittleBaner/LittleBaner";
 import FilterProducts from "../../components/FilterProduct/FilterProduct";
 import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
-// import BlogCard from "../../components/BlogCard/BlogCard";
-// import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
+import LargeBaner from "../../components/Baners/LargeBaner/LargeBaner";
+import OutLineButton from "../../components/UI/Buttons/OutLineButton";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,8 +26,6 @@ const Home: React.FC = () => {
   }, []);
 
   const {
-    data: allClothes,
-    status,
     dataPopular: allClothesRatingSort,
     dataBiggestDiscount: allClotherBiggestDiscount,
   } = useAppSelector((state) => state.clothes);

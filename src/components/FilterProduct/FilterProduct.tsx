@@ -14,8 +14,6 @@ const FilterProducts: React.FC = () => {
   const [productsCount, setProductsCount] = useState<number>(8);
   const [loader, setLoader] = useState<boolean>(false);
 
-  console.log(loader);
-
   const fakeLoader = async () => {
     await new Promise<void>((resolve) => {
       return setTimeout(() => {

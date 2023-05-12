@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home";
 import Admin from "../pages/Admin/Admin";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import AllProducts from "../pages/AllProducts/AllProducts";
+import Shop from "../pages/Shop/Shop";
+import ProductPage from "../pages/ProductPage/ProductPage";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +15,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
+      },
+      {
+        path: "/shop/product/:productId",
+        element: <ProductPage />,
       },
     ],
   },
