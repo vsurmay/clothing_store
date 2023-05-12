@@ -21,6 +21,7 @@ import CheckBoxBlack from "../../components/UI/CheckBoxes/CheckBoxBlack";
 import GrayButton from "../../components/UI/Buttons/GrayButton";
 import ProductsWrapper from "../../components/ProductsWrapper/ProductsWrapper";
 import FilterProducts from "../../components/FilterProduct/FilterProduct";
+import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
 // import BlogCard from "../../components/BlogCard/BlogCard";
 // import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
 
@@ -30,14 +31,12 @@ const Home: React.FC = () => {
     dispatch(getClothes());
   }, []);
 
-  const { data: allClothes, status } = useAppSelector((state) => state.clothes);
-
-  // const products = useSelector((state) => state.products.data);
-  // const articles = useSelector((state) => state.articles.data);
-
-  // useEffect(() => {
-  //   setProductsCount(8);
-  // }, [activeCheckBox]);
+  const {
+    data: allClothes,
+    status,
+    dataPopular: allClothesRatingSort,
+    dataBiggestDiscount: allClotherBiggestDiscount,
+  } = useAppSelector((state) => state.clothes);
 
   const dataBlog = [
     {
@@ -119,10 +118,12 @@ const Home: React.FC = () => {
         img={bannerImg04}
       />
 
-      {/*
-      <ProductSlider products={products} title={"Featured Items"} />
-      <ProductSlider products={products} title={"Most Popular"} />
-      */}
+      <ProductSlider
+        products={allClotherBiggestDiscount}
+        title={"Biggest Discount"}
+      />
+
+      <ProductSlider products={allClothesRatingSort} title={"Most Popular"} />
 
       <LargeBaner
         reverse={true}

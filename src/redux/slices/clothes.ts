@@ -9,22 +9,27 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { ClothesProduct } from "../type";
+import getSortProducts from "../../utils/getSortProducts";
 
 interface InitialState {
   data: ClothesProduct[];
   status: "pending" | "fulfilled" | "rejected";
   productCodes: string[];
+  dataPopular: ClothesProduct[];
+  dataBiggestDiscount: ClothesProduct[];
 }
 
 const initialState: InitialState = {
   data: [],
   status: "pending",
   productCodes: [],
+  dataPopular: [],
+  dataBiggestDiscount: [],
 };
 
 export const getClothes = createAsyncThunk(
   "clothesSlice/getClothes",
-  async (params) => {
+  async () => {
     const db = getFirestore();
     const clotRef = collection(db, "products");
 
@@ -33,6 +38,7 @@ export const getClothes = createAsyncThunk(
     snapshot.forEach((doc) => {
       clothes.push({ ...doc.data(), id: doc.id });
     });
+
     return clothes;
   }
 );
@@ -78,12 +84,22 @@ export const deleteClother = createAsyncThunk(
 const clothesSlice = createSlice({
   name: "clothesSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    getPopularProducts: (state) => {
+      state.dataPopular = state.data.sort((a, b) => a.rating - b.rating);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getClothes.fulfilled, (state, action) => {
         state.data = action.payload;
         state.productCodes = state.data.map((el) => el.productCode);
+        state.dataPopular = getSortProducts(state.data, "rating", "desc");
+        state.dataBiggestDiscount = getSortProducts(
+          state.data,
+          "discount",
+          "desc"
+        );
         state.status = "fulfilled";
       })
       .addCase(getClothes.pending, (state, action) => {
@@ -115,5 +131,7 @@ const clothesSlice = createSlice({
       });
   },
 });
+
+export const { getPopularProducts } = clothesSlice.actions;
 
 export default clothesSlice.reducer;
