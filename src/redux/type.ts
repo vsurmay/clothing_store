@@ -23,3 +23,17 @@ export type BasketItem = {
   productCode: string;
   uniqueCode: string;
 };
+
+export type ArticleItem = {
+  bgBanner: string;
+  date: string;
+  firstDescribtion: string;
+  firstSubtitle: string;
+  id: string;
+  image: string;
+  mainTitle: string;
+  secondlyDescribtion: string;
+  secondlySubtitle: string;
+  type: string;
+  blogCartDescribtion: string;
+};

@@ -5,6 +5,10 @@ const validateArticleForm = (values) => {
     errors.mainTitle = "Required";
   }
 
+  if (!values.blogCartDescribtion) {
+    errors.blogCartDescribtion = "Required";
+  }
+
   if (!values.firstSubtitle) {
     errors.firstSubtitle = "Required";
   }

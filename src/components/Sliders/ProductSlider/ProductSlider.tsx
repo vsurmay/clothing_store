@@ -2,18 +2,18 @@ import React from "react";
 import "./ProductSlider.scss";
 import "swiper/scss";
 import "swiper/scss/navigation";
-// @ts-ignore
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "../../Container/Container";
 import ProductCard from "../../ProductCard/ProductCard";
 // import BlogCard from "../../BlogCard/BlogCard";
-import { ClothesProduct } from "../../../redux/type";
+import { ArticleItem, ClothesProduct } from "../../../redux/type";
+import BlogCard from "../../BlogCard/BlogCard";
 
 type ProductSliderProps = {
-  products: ClothesProduct[];
+  products?: ClothesProduct[];
   title: string;
-  articles?: boolean;
+  articles?: ArticleItem[];
 };
 
 const ProductSlider: React.FC<ProductSliderProps> = ({
@@ -31,22 +31,18 @@ const ProductSlider: React.FC<ProductSliderProps> = ({
           navigation={true}
           modules={[Navigation]}
         >
-          {products.map((product) => (
-            <SwiperSlide key={product.id}>
-              <ProductCard data={product} />
-            </SwiperSlide>
-          ))}
-          {/* {articles
+          {articles
             ? articles.map((article) => (
                 <SwiperSlide key={article.id}>
-                  <BlogCard article={article} />
+                  <BlogCard admin={false} article={article} />
                 </SwiperSlide>
               ))
-            : products.map((product) => (
+            : products &&
+              products.map((product) => (
                 <SwiperSlide key={product.id}>
                   <ProductCard data={product} />
                 </SwiperSlide>
-              ))} */}
+              ))}
         </Swiper>
       </Container>
     </div>

@@ -1,0 +1,50 @@
+.page {}
+
+.hero {
+    position: relative;
+    height: 480px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .mainTitle {
+        display: inline-block;
+        text-align: center;
+        padding: 25px 80px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 400;
+        font-size: 48px;
+        background-color: #FFFFFF;
+        text-transform: uppercase;
+    }
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+}
+
+.infoWrapper {
+    max-width: 634px;
+}
+
+.image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.subtitle {
+    margin-top: 25px;
+    font-size: 28px;
+
+}
+
+.text {
+    margin-top: 15px;
+    // line-height: 68px;
+}

@@ -1,17 +1,30 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, FormikValues } from "formik";
 import React from "react";
 import classes from "./ArticleForm.module.scss";
 import { useDispatch } from "react-redux";
-import { adedArticle, editArticle } from "../../redux/actions/articlesAction";
+// import { adedArticle, editArticle } from "../../redux/actions/articlesAction";
 import { useNavigate } from "react-router-dom";
 import validateArticleForm from "./validateArticleForm";
-import FillButton from "../../components/UI/Buttons/FillButton";
+import FillButton from "../../UI/Buttons/FillButton";
+import { ArticleItem } from "../../../redux/type";
+import { useAppDispatch } from "../../../redux/hooks";
+import { adedArticles, updateArticle } from "../../../redux/slices/articles";
 
-const ArticleForm = ({ edit, currentArticle }) => {
-  const dispatch = useDispatch();
+type ArticleFormProps = {
+  edit: boolean;
+  currentArticle?: ArticleItem;
+  onClose?: () => void;
+};
+
+const ArticleForm: React.FC<ArticleFormProps> = ({
+  edit,
+  currentArticle,
+  onClose,
+}) => {
+  const dispactch = useAppDispatch();
   const navigate = useNavigate();
 
-  const initialValues = {
+  const initialValues: ArticleItem = {
     mainTitle: "",
     firstSubtitle: "",
     firstDescribtion: "",
@@ -21,21 +34,23 @@ const ArticleForm = ({ edit, currentArticle }) => {
     secondlyDescribtion: "",
     type: "",
     date: "",
+    id: "",
+    blogCartDescribtion: "",
   };
 
   return (
     <div>
       <Formik
-        initialValues={edit ? currentArticle : initialValues}
+        initialValues={edit ? currentArticle || initialValues : initialValues}
         validate={validateArticleForm}
         onSubmit={(values) => {
           if (edit) {
-            console.log(values);
-            dispatch(editArticle(values));
+            dispactch(updateArticle(values));
+            onClose && onClose();
           } else {
-            dispatch(adedArticle(values));
+            dispactch(adedArticles(values));
+            navigate("/admin/all_articles");
           }
-          navigate("/admin/all_articles");
         }}
       >
         <Form>
@@ -94,6 +109,18 @@ const ArticleForm = ({ edit, currentArticle }) => {
             </label>
             <p className={classes.error}>
               <ErrorMessage name="firstDescribtion" />
+            </p>
+
+            <label className={classes.label}>
+              blogCartDescribtion
+              <Field
+                className={classes.input}
+                name={"blogCartDescribtion"}
+                as={"textarea"}
+              />
+            </label>
+            <p className={classes.error}>
+              <ErrorMessage name="blogCartDescribtion" />
             </p>
 
             <label className={classes.label}>
