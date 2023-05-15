@@ -1,5 +1,7 @@
-const validateArticleForm = (values) => {
-  const errors = {};
+import { ArticleItem } from "../../../redux/type";
+
+const validateArticleForm = (values: ArticleItem) => {
+  const errors: any = {};
 
   if (!values.mainTitle) {
     errors.mainTitle = "Required";

@@ -10,6 +10,7 @@ import Basket from "../pages/Basket/Basket";
 import AllArticles from "../pages/AllArticles/AllArticles";
 import AddActicle from "../pages/AddActicle/AddActicle";
 import Blog from "../pages/Blog/Blog";
+import ErorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/admin",
     element: <Admin />,
@@ -54,4 +56,5 @@ export const router = createBrowserRouter([
       { path: "add_article", element: <AddActicle /> },
     ],
   },
+  { path: "*", element: <ErorPage /> },
 ]);
