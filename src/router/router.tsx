@@ -9,6 +9,7 @@ import ProductPage from "../pages/ProductPage/ProductPage";
 import Basket from "../pages/Basket/Basket";
 import AllArticles from "../pages/AllArticles/AllArticles";
 import AddActicle from "../pages/AddActicle/AddActicle";
+import Blog from "../pages/Blog/Blog";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/basket",
         element: <Basket />,
+      },
+      {
+        path: "/blog/article/:articleId",
+        element: <Blog />,
       },
     ],
   },

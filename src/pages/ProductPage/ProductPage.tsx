@@ -13,6 +13,7 @@ import PickSize from "../../components/PickSize/PickSize";
 import FillButton from "../../components/UI/Buttons/FillButton";
 import OutLineButton from "../../components/UI/Buttons/OutLineButton";
 import { HeartOutlined } from "@ant-design/icons";
+import Spiner from "../../components/Spiner/Spiner";
 
 const ProductPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -73,7 +74,7 @@ const ProductPage: React.FC = () => {
   }
 
   if (status === "pending") {
-    return <>Загрузка</>;
+    return <Spiner />;
   }
 
   return (

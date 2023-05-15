@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { getBasketItems } from "./redux/slices/basket";
+import { getClothes } from "./redux/slices/clothes";
 
 const App: React.FC = () => {
   const isFirstEnter = useRef(false);
@@ -23,6 +24,10 @@ const App: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("basket", JSON.stringify(basketProducts));
   }, [basketProducts]);
+
+  useEffect(() => {
+    dispatch(getClothes());
+  }, []);
 
   return (
     <div className={classes.layout}>

@@ -25,7 +25,7 @@ const Header = () => {
     },
     {
       text: "blog",
-      key: "/blog",
+      key: "/blog/article/mainArticle",
     },
     {
       text: "sale",

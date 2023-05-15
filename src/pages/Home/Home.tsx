@@ -23,7 +23,6 @@ import { getArticles } from "../../redux/slices/articles";
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getClothes());
     dispatch(getArticles());
   }, []);
 
@@ -35,37 +34,6 @@ const Home: React.FC = () => {
   const { articles, status: articleStstus } = useAppSelector(
     (state) => state.articles
   );
-
-  // const dataBlog: DataBlog[] = [
-  //   {
-  //     id: 1,
-  //     title: "Exactly What To Wear To Every Type Of Wedding This Summer",
-  //     type: "Article",
-  //     date: "21 January 2018 by guido",
-  //     text: "A large part of the business here is building up the 'experience'. Double-page spreads in magazines. Ads on TV. Product placement and sponsorship in golf tournaments, tennis matches and sailing competitions. All of this builds up your perception of the brand - and additionally, it costs money.",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Exactly What To Wear To Every Type Of Wedding This Summer",
-  //     type: "tips",
-  //     date: "21 January 2018 by guido",
-  //     text: "When selling 70% fewer shirts, however, there are fewer shirts on the market, making it more exclusive, and therefore worth the money, for those to whom it matters. ",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Exactly What To Wear To Every Type Of Wedding This Summer",
-  //     type: "Article",
-  //     date: "21 January 2018 by guido",
-  //     text: "A large part of the business here is building up the 'experience'. Double-page spreads in magazines. Ads on TV. Product placement and sponsorship in golf tournaments, tennis matches and sailing competitions. All of this builds up your perception of the brand - and additionally, it costs money.",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Exactly What To Wear To Every Type Of Wedding This Summer",
-  //     type: "Article",
-  //     date: "21 January 2018 by guido",
-  //     text: "When selling 70% fewer shirts, however, there are fewer shirts on the market, making it more exclusive, and therefore worth the money, for those to whom it matters. ",
-  //   },
-  // ];
 
   return (
     <div className={classes.home}>

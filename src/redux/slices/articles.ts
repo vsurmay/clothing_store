@@ -4,6 +4,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   getFirestore,
   updateDoc,
@@ -12,12 +13,29 @@ import { ArticleItem } from "../type";
 
 interface InitialState {
   articles: ArticleItem[];
-  status: "pending" | "fulfilled";
+  status: "pending" | "fulfilled" | "rejected";
+  articleItem: ArticleItem;
+  articleItemStatus: "pending" | "fulfilled" | "rejected";
 }
+const initialArticleItem: ArticleItem = {
+  bgBanner: "",
+  date: "",
+  firstDescribtion: "",
+  firstSubtitle: "",
+  id: "",
+  image: "",
+  mainTitle: "",
+  secondlyDescribtion: "",
+  secondlySubtitle: "",
+  type: "",
+  blogCartDescribtion: "",
+};
 
 const initialState: InitialState = {
   articles: [],
   status: "pending",
+  articleItem: initialArticleItem,
+  articleItemStatus: "pending",
 };
 
 export const getArticles = createAsyncThunk(
@@ -31,6 +49,16 @@ export const getArticles = createAsyncThunk(
       articles.push({ ...doc.data(), id: doc.id });
     });
     return articles;
+  }
+);
+
+export const getArticleItem = createAsyncThunk(
+  "articleSlice/getArticleItem",
+  async (param: string) => {
+    const db = getFirestore();
+    const docRef = doc(db, "articles", param);
+    const snapshot = await getDoc(docRef);
+    return { ...snapshot.data(), id: param };
   }
 );
 
@@ -91,6 +119,15 @@ const articleSlice = createSlice({
             return article;
           }
         });
+      })
+      .addCase(getArticleItem.fulfilled, (state, action) => {
+        // @ts-ignore
+        state.articleItem = action.payload;
+        state.articleItemStatus = "fulfilled";
+      })
+      .addCase(getArticleItem.pending, (state) => {
+        state.articleItem = initialArticleItem;
+        state.articleItemStatus = "pending";
       });
   },
 });
