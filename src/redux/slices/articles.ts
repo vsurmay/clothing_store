@@ -6,10 +6,10 @@ import {
   doc,
   getDoc,
   getDocs,
-  getFirestore,
   updateDoc,
 } from "firebase/firestore";
 import { ArticleItem } from "../type";
+import { db } from "../../firebase/firebase";
 
 interface InitialState {
   articles: ArticleItem[];
@@ -41,7 +41,6 @@ const initialState: InitialState = {
 export const getArticles = createAsyncThunk(
   "articleSlice/getArticles",
   async () => {
-    const db = getFirestore();
     const artRef = collection(db, "articles");
     const snapshot = await getDocs(artRef);
     const articles: any = [];
@@ -55,7 +54,6 @@ export const getArticles = createAsyncThunk(
 export const getArticleItem = createAsyncThunk(
   "articleSlice/getArticleItem",
   async (param: string) => {
-    const db = getFirestore();
     const docRef = doc(db, "articles", param);
     const snapshot = await getDoc(docRef);
     return { ...snapshot.data(), id: param };
@@ -66,7 +64,6 @@ export const adedArticles = createAsyncThunk(
   "articleSlice/adedArticles",
   async (param: ArticleItem) => {
     const { id, ...article } = param;
-    const db = getFirestore();
     const docRef = collection(db, "articles");
     const doc = await addDoc(docRef, article);
     return { ...article, id: doc.id };
@@ -76,7 +73,6 @@ export const adedArticles = createAsyncThunk(
 export const deleteArticle = createAsyncThunk(
   "articleSlice/deleteArticle",
   async (param: string) => {
-    const db = getFirestore();
     const docRef = doc(db, "articles", param);
     await deleteDoc(docRef);
     return param;
@@ -86,7 +82,6 @@ export const deleteArticle = createAsyncThunk(
 export const updateArticle = createAsyncThunk(
   "articleSlice/updateArticle",
   async (param: ArticleItem) => {
-    const db = getFirestore();
     const docRef = doc(db, "articles", param.id);
     const snapshot = await updateDoc(docRef, param);
     return param;

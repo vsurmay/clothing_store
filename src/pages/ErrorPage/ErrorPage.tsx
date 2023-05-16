@@ -1,5 +1,5 @@
 import { Result } from "antd";
-import { useRouteError, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FillButton from "../../components/UI/Buttons/FillButton";
 
 const ErorPage = () => {

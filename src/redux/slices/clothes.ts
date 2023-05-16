@@ -6,11 +6,11 @@ import {
   doc,
   getDoc,
   getDocs,
-  getFirestore,
   updateDoc,
 } from "firebase/firestore";
 import { ClothesProduct } from "../type";
 import getSortProducts from "../../utils/getSortProducts";
+import { db } from "../../firebase/firebase";
 
 interface InitialState {
   data: ClothesProduct[];
@@ -48,7 +48,6 @@ const initialState: InitialState = {
 export const getClothes = createAsyncThunk(
   "clothesSlice/getClothes",
   async () => {
-    const db = getFirestore();
     const clotRef = collection(db, "products");
     const snapshot = await getDocs(clotRef);
     let clothes: any = [];
@@ -63,7 +62,6 @@ export const getClothes = createAsyncThunk(
 export const getClotherProduct = createAsyncThunk(
   "clothesSlice/getClotherProduct",
   async (params: string) => {
-    const db = getFirestore();
     const prodRef = doc(db, "products", params);
     const snapshot = await getDoc(prodRef);
     if (snapshot.exists()) {
@@ -75,7 +73,6 @@ export const getClotherProduct = createAsyncThunk(
 export const adedClother = createAsyncThunk(
   "clothesSlice/adedClother",
   async (params: ClothesProduct) => {
-    const db = getFirestore();
     const clotRef = collection(db, "products");
     const snapshot = await addDoc(clotRef, params);
     return { ...params, id: snapshot.id };
@@ -85,7 +82,6 @@ export const adedClother = createAsyncThunk(
 export const updateClother = createAsyncThunk(
   "clothesSlice/updateClother",
   async (params: ClothesProduct) => {
-    const db = getFirestore();
     const clotRef = doc(db, "products", params.id);
     await updateDoc(clotRef, params);
     return params;
@@ -95,7 +91,6 @@ export const updateClother = createAsyncThunk(
 export const deleteClother = createAsyncThunk(
   "clothesSlice/deleteClother",
   async (params: string) => {
-    const db = getFirestore();
     const docRef = doc(db, "products", params);
     await deleteDoc(docRef);
     return params;

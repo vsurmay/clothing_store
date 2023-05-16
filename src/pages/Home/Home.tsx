@@ -19,6 +19,7 @@ import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider"
 import LargeBaner from "../../components/Baners/LargeBaner/LargeBaner";
 import OutLineButton from "../../components/UI/Buttons/OutLineButton";
 import { getArticles } from "../../redux/slices/articles";
+import Test from "../../components/Test/Test";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -69,6 +70,10 @@ const Home: React.FC = () => {
             <img src={bannerImg03} alt="baner" />
           </div>
         </div>
+      </Container>
+
+      <Container>
+        <Test />
       </Container>
 
       <FilterProducts />
