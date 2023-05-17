@@ -3,12 +3,17 @@ import { useEffect, useState } from "react";
 import { storage } from "../firebase/firebase";
 
 const useFireBaseStorage = (path: string) => {
+  console.log(path);
+
   const [url, setUrl] = useState<string>("");
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getDownloadUrl = async () => {
+      if (path === "articles/") {
+        return { url, error, loading };
+      }
       setLoading(true);
       try {
         const pathRef = ref(storage, path);

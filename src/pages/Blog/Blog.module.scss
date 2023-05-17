@@ -1,50 +1,56 @@
-.page {}
-
 .hero {
-    position: relative;
-    height: 480px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  position: relative;
+  height: 480px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
-    .mainTitle {
-        display: inline-block;
-        text-align: center;
-        padding: 25px 80px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-weight: 400;
-        font-size: 48px;
-        background-color: #FFFFFF;
-        text-transform: uppercase;
-    }
+  .mainTitle {
+    display: inline-block;
+    text-align: center;
+    padding: 25px 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 400;
+    font-size: 48px;
+    background-color: #ffffff;
+    text-transform: uppercase;
+  }
+}
+
+.bgSpinner {
+  position: absolute;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
 }
 
 .info {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -75px;
 }
 
 .infoWrapper {
-    max-width: 634px;
+  max-width: 634px;
 }
 
 .image {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 30px;
 }
 
 .subtitle {
-    margin-top: 25px;
-    font-size: 28px;
-
+  margin-top: 25px;
+  font-size: 28px;
 }
 
 .text {
-    margin-top: 15px;
-    // line-height: 68px;
+  margin-top: 15px;
+  // line-height: 68px;
 }

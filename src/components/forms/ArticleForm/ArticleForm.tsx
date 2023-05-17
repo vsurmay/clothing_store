@@ -1,8 +1,6 @@
 import { ErrorMessage, Field, Form, Formik, FormikValues } from "formik";
 import React from "react";
 import classes from "./ArticleForm.module.scss";
-import { useDispatch } from "react-redux";
-// import { adedArticle, editArticle } from "../../redux/actions/articlesAction";
 import { useNavigate } from "react-router-dom";
 import validateArticleForm from "./validateArticleForm";
 import FillButton from "../../UI/Buttons/FillButton";

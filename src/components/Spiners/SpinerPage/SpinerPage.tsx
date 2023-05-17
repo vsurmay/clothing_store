@@ -1,6 +1,6 @@
 import { MoonLoader } from "react-spinners";
-import classes from "./Spiner.module.scss";
-import Container from "../Container/Container";
+import classes from "./SpinerPage.module.scss";
+import Container from "../../Container/Container";
 
 function Spiner() {
   return (
