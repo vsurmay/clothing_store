@@ -1,0 +1,58 @@
+.itemWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.productWrapper {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.itemTitle {
+  margin-bottom: 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: normal;
+}
+
+.colorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #c4c4c4;
+}
+
+.colorItem {
+  width: 15px;
+  height: 15px;
+}
+
+.product {
+  width: 35%;
+}
+
+.price {
+  width: 15%;
+}
+
+.size {
+  width: 10%;
+}
+
+.quantity {
+  width: 15%;
+}
+
+.total {
+  width: 15%;
+}
+
+.activity {
+  width: 10%;
+}
