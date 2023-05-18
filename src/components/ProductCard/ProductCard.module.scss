@@ -1,38 +1,43 @@
 .card {
-    max-width: 344px;
-    border: 1px solid black;
-    cursor: pointer;
+  max-width: 344px;
+  cursor: pointer;
+  box-shadow: 2px 2px 12px -1px rgba(0, 0, 0, 0.77);
+  border-radius: 5px;
+}
+
+.info {
+  padding: 0 10px 10px 10px;
 }
 
 .variety {
-    margin-top: 14px;
-    font-weight: 600;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #BDBDBD;
+  margin-top: 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #bdbdbd;
 }
 
 .name {
-    margin-top: 5px;
-    font-weight: 300;
-    font-size: 18px;
+  margin-top: 5px;
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .price {
-    margin-top: 15px;
-    font-weight: 500;
-    font-size: 22px;
-    text-transform: uppercase;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 22px;
+  text-transform: uppercase;
 
-    &.newPrice {
-        color: #EB5757;
-    }
+  &.newPrice {
+    color: #eb5757;
+  }
 }
 
 .oldPrice {
-    margin-left: 15px;
-    font-size: 18px;
-    color: #959595;
-    text-decoration: line-through;
-    font-weight: 400;
+  margin-left: 15px;
+  font-size: 18px;
+  color: #959595;
+  text-decoration: line-through;
+  font-weight: 400;
 }

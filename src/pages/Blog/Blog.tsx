@@ -5,13 +5,12 @@ import Container from "../../components/Container/Container";
 import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getArticleItem } from "../../redux/slices/articles";
-import { Slider } from "antd";
 
 import useFireBaseStorage from "../../hooks/useFireBaseStorage";
 import SpinerPage from "../../components/Spiners/SpinerPage/SpinerPage";
 import { FadeLoader } from "react-spinners";
 
-const Blog = () => {
+const Blog: React.FC = () => {
   const dispatch = useAppDispatch();
   const { articleId } = useParams();
 
@@ -19,15 +18,12 @@ const Blog = () => {
     (state) => state.articles
   );
 
-  console.log(articleItem);
-
   const clotherProducts = useAppSelector((state) => state.clothes.data);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     articleId && dispatch(getArticleItem(articleId));
   }, []);
-
-  // image store
 
   const { url: bgUrl, loading: bgLoading } = useFireBaseStorage(
     "articles/" + articleItem.bgBanner
