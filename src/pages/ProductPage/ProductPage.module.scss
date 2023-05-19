@@ -1,56 +1,120 @@
+.productPage {
+  margin-top: 60px;
+}
+
 .wrapper {
-    display: flex;
-    gap: 70px
+  display: flex;
+  justify-content: center;
+  gap: 70px;
 }
 
 .title {
-    margin-bottom: 28px;
-    max-width: 500px;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 117%;
+  margin-bottom: 28px;
+  max-width: 500px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 117%;
 }
 
 .subtitle {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
 
-    a {
-        font-family: 'Roboto', sans-serif;
-        text-transform: none;
-        color: #0F6DB1;
-        text-decoration-line: underline;
-    }
+  a {
+    font-family: "Roboto", sans-serif;
+    text-transform: none;
+    color: #0f6db1;
+    text-decoration-line: underline;
+  }
 }
 
 .priceWrapper {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 }
 
 .priceValue {
-    padding: 2px 0;
-    font-weight: 500;
-    font-size: 26px;
-    text-transform: uppercase;
+  padding: 2px 0;
+  font-weight: 500;
+  font-size: 26px;
+  text-transform: uppercase;
 }
 
 .newPrice {
-    color: #EB5757;
+  color: #eb5757;
 }
 
 .oldPrice {
-    color: #828282;
-    font-size: 18px;
-    margin-left: 15px;
-    text-decoration: line-through;
+  color: #828282;
+  font-size: 18px;
+  margin-left: 15px;
+  text-decoration: line-through;
 }
 
 .btns {
-    margin-top: 36px;
-    display: flex;
-    gap: 20px;
+  margin-top: 36px;
+  display: flex;
+  gap: 20px;
+}
+
+.description {
+  margin: 0 auto;
+  margin-top: 71px;
+  max-width: 1240px;
+}
+
+.iconContainer {
+  position: relative;
+}
+
+.iconLine1 {
+  position: absolute;
+  left: -15px;
+  background-color: #a1a1a1;
+  width: 16px;
+  height: 3px;
+}
+.iconLine2 {
+  position: absolute;
+  left: -15px;
+  background-color: #a1a1a1;
+  width: 16px;
+  height: 3px;
+  transition: all 0.3s ease;
+  transform: rotate(90deg);
+}
+
+.iconLine2Active {
+  transform: rotate(0deg);
+}
+
+.acord {
+  background: none;
+}
+
+.acordItem {
+  padding: 25px;
+  border-bottom: none !important;
+  margin-bottom: 25px;
+  background-color: #f8f9fb;
+  span {
+    font-family: "Oswald";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 68px;
+  }
+}
+
+:global {
+  .ant-collapse-header {
+    padding: 0 !important;
+  }
+
+  .ant-collapse-content-box {
+    padding: 0 !important;
+  }
 }

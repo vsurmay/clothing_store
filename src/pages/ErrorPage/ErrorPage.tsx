@@ -10,7 +10,7 @@ const ErorPage = () => {
       title={status}
       subTitle="Sorry, you are not authorized to access this page."
       extra={
-        <Link to={"/home"}>
+        <Link to={"/"}>
           <FillButton>Back Home</FillButton>
         </Link>
       }

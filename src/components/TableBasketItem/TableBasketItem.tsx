@@ -2,7 +2,14 @@ import React from "react";
 import classes from "./TableBasketItem.module.scss";
 import { BasketItem } from "../../redux/type";
 import useFireBaseStorage from "../../hooks/useFireBaseStorage";
-import { Image } from "antd";
+import { Image, InputNumber } from "antd";
+import { useAppDispatch } from "../../redux/hooks";
+import {
+  deleteBasketItem,
+  updateBasketProducts,
+} from "../../redux/slices/basket";
+import heardIcon from "../../assets/img/heard-basket.svg";
+import deleteIcon from "../../assets/img/delete-basket.svg";
 
 type TableBasketItemProps = {
   item: BasketItem;
@@ -10,6 +17,8 @@ type TableBasketItemProps = {
 
 const TableBasketItem: React.FC<TableBasketItemProps> = ({ item }) => {
   console.log(item);
+
+  const dispatch = useAppDispatch();
 
   const { url, loading } = useFireBaseStorage("clother/" + item.image);
 
@@ -36,8 +45,38 @@ const TableBasketItem: React.FC<TableBasketItemProps> = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className={`${classes.price} ${classes.priceWrapper}`}>
+      <div className={classes.price}>
         <h3 className={classes.itemTitle}>{item.price.toFixed(2)} EUR</h3>
+      </div>
+      <div className={classes.size}>
+        <h3 className={classes.itemTitle}>{item.size}</h3>
+      </div>
+      <div className={`${classes.quantity} ${classes.quantityWrapper}`}>
+        <InputNumber
+          className={classes.quantityInput}
+          onChange={(quantity) => {
+            quantity && dispatch(updateBasketProducts({ ...item, quantity }));
+          }}
+          defaultValue={item.quantity}
+          min={1}
+        />
+      </div>
+      <div className={classes.total}>
+        <h3 className={classes.itemTitle}>
+          {(item.price * item.quantity).toFixed(2)} EUR
+        </h3>
+      </div>
+      <div className={`${classes.activity} ${classes.activityWrapper}`}>
+        <button>
+          <img src={heardIcon} />
+        </button>
+        <button
+          onClick={() => {
+            dispatch(deleteBasketItem(item.uniqueCode));
+          }}
+        >
+          <img src={deleteIcon} />
+        </button>
       </div>
     </div>
   );
