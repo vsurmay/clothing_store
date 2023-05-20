@@ -12,7 +12,9 @@
 
 .biggerBaner {
   position: relative;
-  max-width: 840px;
+  display: flex;
+  flex: 0 1 840px;
+  // max-width: 840px;
 
   img {
     max-width: 100%;

@@ -37,6 +37,7 @@ const ProductPage: React.FC = () => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (productId) {
       dispatch(getClotherProduct(productId));
     }
@@ -191,29 +192,46 @@ const ProductPage: React.FC = () => {
                   ></span>
                 </div>
               )}
-              defaultActiveKey={["1"]}
               onChange={onChange}
             >
-              <Panel
-                className={classes.acordItem}
-                header="This is panel header 1"
-                key="1"
-              >
-                <p>{text}</p>
+              <Panel className={classes.acordItem} header="Details" key="1">
+                <div className={classes.acordItemContent}>
+                  <div className={classes.acordItemContentColumn}>
+                    <h3 className={classes.subtitle}>About Product</h3>
+                    <p className={classes.describtionText}>
+                      ABOUT PRODUCT Cool off this summer in the Mini Ruffle
+                      Smocked Tank Top from our very own LA Hearts.
+                      <p className={classes.describtionText}>
+                        This tank features a smocked body, adjustable straps,
+                        scoop neckline, ruffled hems, and a cropped fit.
+                      </p>
+                    </p>
+                  </div>
+                  <div className={classes.acordItemContentColumn}>
+                    <h3 className={classes.subtitle}>Shipping</h3>
+                    <p className={classes.describtionText}>
+                      We offer Free Standard Shipping for all orders over $75 to
+                      the 50 states and the District of Columbia. The minimum
+                      order value must be $75 before taxes, shipping and
+                      handling. Shipping fees are non-refundable.
+                    </p>
+                    <p className={classes.describtionText}>
+                      Please allow up to 2 business days (excluding weekends,
+                      holidays, and sale days) to process your order.
+                    </p>
+                    <p className={classes.describtionText}>
+                      Processing Time + Shipping Time = Delivery Time.
+                    </p>
+                  </div>
+                </div>
               </Panel>
-              <Panel
-                className={classes.acordItem}
-                header="This is panel header 2"
-                key="2"
-              >
-                <p>{text}</p>
-              </Panel>
-              <Panel
-                className={classes.acordItem}
-                header="This is panel header 3"
-                key="3"
-              >
-                <p>{text}</p>
+              <Panel className={classes.acordItem} header="Advantages" key="2">
+                <h3 className={classes.subtitle}> advantages product</h3>
+                <ul className={classes.advantagesList}>
+                  <li className={classes.advantagesListItem}>TEst</li>
+                  <li className={classes.advantagesListItem}>TEst</li>
+                  <li className={classes.advantagesListItem}>TEst</li>
+                </ul>
               </Panel>
             </Collapse>
           </div>
