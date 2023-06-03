@@ -21,6 +21,7 @@ import ProductSlider from "../../components/Sliders/ProductSlider/ProductSlider"
 const ProductPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { productId } = useParams();
+  console.log("test");
   const {
     clotherProduct: product,
     statusClotherProduct: status,
